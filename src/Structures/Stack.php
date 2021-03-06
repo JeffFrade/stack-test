@@ -58,6 +58,8 @@ class Stack
      */
     public function size(): int
     {
+        $this->verifyIfStackIsEmpty();
+
         return count($this->stack);
     }
 
@@ -68,6 +70,8 @@ class Stack
      */
     public function clear(): void
     {
+        $this->verifyIfStackIsEmpty();
+
         $this->stack = [];
     }
 
