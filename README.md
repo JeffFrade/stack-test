@@ -22,6 +22,7 @@ A estrutura da `Pilha/Stack` conta com os seguintes casos de testes:
 - `testTopStack` => Testa a exibição do último valor inserido na pilha/stack
 - `testPopStack` => Testa a exibição do último valor inserido na pilha/stack, a remoção do último valor e o tamanho da pilha/stack
 - `testClearStack` => Testa se a pilha/stack está limpa
+- `testClearStack` => Testa se Exception `StackEmptyException` é disparada caso a pilha/stack esteja vazia
 
 ## Instalação
 ---

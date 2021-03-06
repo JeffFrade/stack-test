@@ -1,6 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Structures;
+
+use App\Exceptions\StackEmptyException;
 
 class Stack
 {
@@ -9,7 +11,7 @@ class Stack
      *
      * @var array
      */
-    private $stack;
+    private $stack = [];
     
     /**
      * Push value to stack
@@ -29,6 +31,8 @@ class Stack
      */
     public function top(): string
     {
+        $this->verifyIfStackIsEmpty();
+
         return end($this->stack);
     }
 
@@ -39,6 +43,8 @@ class Stack
      */
     public function pop(): string
     {
+        $this->verifyIfStackIsEmpty();
+
         $val = $this->top();
         unset($this->stack[$this->size() - 1]);
 
@@ -63,5 +69,18 @@ class Stack
     public function clear(): void
     {
         $this->stack = [];
+    }
+
+    /**
+     * Verify if stack is empty
+     * 
+     * @throws StackEmptyException
+     * @return void
+     */
+    protected function verifyIfStackIsEmpty(): void
+    {
+        if ($this->size() <= 0) {
+            throw new StackEmptyException('Stack is empty');
+        }
     }
 }

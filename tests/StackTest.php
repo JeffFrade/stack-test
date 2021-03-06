@@ -2,7 +2,8 @@
 
 namespace Test;
 
-use App\Stack;
+use App\Exceptions\StackEmptyException;
+use App\Structures\Stack;
 use PHPUnit\Framework\TestCase;
 
 class StackTest extends TestCase
@@ -14,7 +15,7 @@ class StackTest extends TestCase
      */
     public function testPushAndSizeStack()
     {
-        $stack = new Stack;
+        $stack = new Stack();
         $stack->push('First');
 
         $this->assertInstanceOf(Stack::class, $stack);
@@ -28,7 +29,7 @@ class StackTest extends TestCase
      */
     public function testTopStack()
     {
-        $stack = new Stack;
+        $stack = new Stack();
         $stack->push('First');
         $stack->push('Second');
 
@@ -42,7 +43,7 @@ class StackTest extends TestCase
      */
     public function testPopStack()
     {
-        $stack = new Stack;
+        $stack = new Stack();
         $stack->push('First');
         $stack->push('Second');
         $stack->push('Third');
@@ -58,7 +59,7 @@ class StackTest extends TestCase
      */
     public function testClearStack()
     {
-        $stack = new Stack;
+        $stack = new Stack();
         $stack->push('First');
         $stack->push('Second');
         $stack->push('Third');
@@ -66,5 +67,18 @@ class StackTest extends TestCase
 
         $stack->clear();
         $this->assertEquals(0, $stack->size());
+    }
+
+    /**
+     * Test StackEmptyException
+     *
+     * @return void
+     */
+    public function testStackEmptyException()
+    {
+        $this->expectException(StackEmptyException::class);
+
+        $stack = new Stack();
+        $stack->top();
     }
 }
